@@ -1,5 +1,6 @@
 package pixelsculptor.engine;
 
+import processing.core.PConstants;
 import ruben.common.processing.applet.BaseAppletDrawer;
 import ruben.common.processing.applet.BasePApplet;
 
@@ -65,7 +66,7 @@ public class GridAppletDrawer extends BaseAppletDrawer {
 		float camPosX = _lightsDirX*state.lightningDistance.get_value()-_applet.width/2;
 		float camPosZ = _lightsDirZ*state.lightningDistance.get_value()+_applet.height/2;
 		float camPosY = state.lightningHeight.get_value();
-		_applet.spotLight(x, x, x, camPosX, camPosY, camPosZ, 0, 1, 0, _applet.PI/2, -0.5f);
+		_applet.spotLight(x, x, x, camPosX, camPosY, camPosZ, 0, 1, 0, PConstants.PI/2, -0.5f);
 		
 		// show light source when debug
 		if (state.show_debug) {

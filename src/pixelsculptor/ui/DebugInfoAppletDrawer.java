@@ -3,22 +3,21 @@ package pixelsculptor.ui;
 import pixelsculptor.engine.IConfigurationRepository;
 import pixelsculptor.engine.IGridRepository;
 import pixelsculptor.engine.IPixelSculptorStateRepository;
-import pixelsculptor.engine.PixelSculptorState;
 import ruben.common.processing.applet.BaseAppletDrawer;
 import ruben.common.processing.applet.BasePApplet;
 
 public class DebugInfoAppletDrawer extends BaseAppletDrawer {
 
 	private BasePApplet _applet;
-	private IConfigurationRepository _configRepo;
+	//private IConfigurationRepository _configRepo;
 	private IPixelSculptorStateRepository _stateRepo;
-	private IGridRepository _gridRepo;
+	//private IGridRepository _gridRepo;
 	
 	public DebugInfoAppletDrawer(BasePApplet applet,IConfigurationRepository configRepo, IPixelSculptorStateRepository stateRepo, IGridRepository gridRepo) {
 		_applet = applet;
-		_configRepo = configRepo;
+		//_configRepo = configRepo;
 		_stateRepo = stateRepo;
-		_gridRepo = gridRepo;
+		//_gridRepo = gridRepo;
 	}
 	
 	public void draw() {
@@ -52,7 +51,7 @@ public class DebugInfoAppletDrawer extends BaseAppletDrawer {
 	private void show_debug() {
 		_applet.fill(_stateRepo.get_pixelsculptor_state().foreground());
 
-		PixelSculptorState state = _stateRepo.get_pixelsculptor_state();
+		//PixelSculptorState state = _stateRepo.get_pixelsculptor_state();
 
 		String output = String
 				.format(

@@ -1,7 +1,6 @@
 package pixelsculptor.engine;
 
 import java.util.Vector;
-import javax.swing.JFileChooser;
 import controlP5.ControlEvent;
 import controlP5.ControlP5;
 import processing.core.*;
@@ -10,8 +9,6 @@ import pixelsculptor.rendering.*;
 import pixelsculptor.ui.*;
 import pixelsculptor.utilities.*;
 import ruben.common.processing.applet.*;
-import ruben.common.processing.utils.FileLoadStrategy;
-import ruben.common.processing.utils.ILoadStrategy;
 import ruben.common.processing.video.*;
 
 //import processing.opengl.*;
@@ -22,22 +19,12 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		ISourceSelector, IConfigurationRepository, IScreenMaterializer,
 		IPixelSculptorStateRepository, IImageSourceRepository, IGridRepository {
 
-	private static String initialFile = "";
-
 	public static void main(String args[]) {
-
-		// if (args.length == 1) initialFile = args[0];
 
 		PApplet.main(new String[] { "display=1", "--bgcolor=#000000",
 				"--present-stop-color=#000000", "--exclusive", "--present",
 				"pixelsculptor.engine.PixelSculptor" });
 	}
-
-	// static PixelSculptor _instance = null;
-	//
-	// public static PixelSculptor get_instance() {
-	// return _instance;
-	// }
 
 	IPixelSculptorConfiguration _config;
 	PixelGrid _grid;
@@ -49,7 +36,6 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 
 	public void setup() {
 
-		// _instance = this;
 		super.setup();
 
 		_config = new ConfigurationFile(this, "app.config");

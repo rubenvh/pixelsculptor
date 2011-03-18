@@ -2,7 +2,6 @@ package pixelsculptor.domain;
 
 import pixelsculptor.engine.IConfigurationRepository;
 import pixelsculptor.utilities.KeyMap;
-import processing.core.PConstants;
 import processing.core.PVector;
 import ruben.common.processing.applet.BasePApplet;
 import kaleidoscope.AppCamera;

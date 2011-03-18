@@ -2,7 +2,6 @@ package pixelsculptor.engine;
 
 import pixelsculptor.domain.ImageSourceType;
 import ruben.common.processing.applet.BasePApplet;
-import ruben.common.processing.utils.FileLoadStrategy;
 import ruben.common.processing.video.DirImageSource;
 import ruben.common.processing.video.IImageSource;
 import ruben.common.processing.video.ImageSource;
