@@ -21,6 +21,8 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 	private Button _takeScreenshot_btn;
 	private Button _moveLights_btn;
 	private Button _interactiveCamera_btn;
+	private Button _auto_camera_leftright;
+	private Slider _auto_camera_speed;
 	private Slider _camera_sld;
 	private Slider _maxPixels_sld;
 	private Slider _rgbScale_sld;
@@ -70,6 +72,10 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 		_camera_sld.setSliderMode(Slider.VERTICAL);
 		_camera_sld.hide();
 
+		_auto_camera_leftright = controls.addButton("direction", 0, 420, 39, 40, 20);
+		_auto_camera_speed = _controls.addSlider("camera speed", 0, 1000, 10, 
+				10, _applet.height-160, 200, 10);
+		_auto_camera_speed.setSliderMode(Slider.VERTICAL);
 		_maxPixels_sld = _controls.addSlider("maximum number of pixels", 1, 50,
 				10, 10, _applet.height - 140, 200, 10);
 		_maxPixels_sld.setNumberOfTickMarks(50);
@@ -140,6 +146,17 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 			{
 				_stateRepo.get_pixelsculptor_state().interactive_camera = !_stateRepo.get_pixelsculptor_state().interactive_camera;
 			}
+			else if (theEvent.controller().equals(_auto_camera_leftright))
+			{
+				int dir = _stateRepo.get_pixelsculptor_state().auto_camera_direction.get_value();
+				_stateRepo.get_pixelsculptor_state().auto_camera_direction
+						.set_value(-1 * dir);
+			}
+			else if (theEvent.controller().equals(_auto_camera_speed))
+			{
+				_stateRepo.get_pixelsculptor_state().auto_camera_speed
+						.set_value(_auto_camera_speed.value()/100);
+			}
 			else if (theEvent.controller().equals(_background_sld))
 			{
 				_stateRepo.get_pixelsculptor_state().background
@@ -208,6 +225,8 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 			_applet.fill(_stateRepo.get_pixelsculptor_state().foreground());
 			_applet.text(_imageSourceRepo.get_image_source().get_source_name(),
 					230, 25);
+			
+			
 
 			_stateRepo.get_pixelsculptor_state().camera.end2D();
 		}
@@ -251,6 +270,16 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 		
 		_moveLights_btn.setColorBackground(state.auto_lights? _applet.color(0, 125, 100) : _applet.color(60));
 		_interactiveCamera_btn.setColorBackground(state.interactive_camera? _applet.color(0, 125, 100) : _applet.color(60));
+		
+		if (state.interactive_camera) {
+			_auto_camera_leftright.hide();
+			_auto_camera_speed.hide();
+		}else {
+			_auto_camera_leftright.show();
+			_auto_camera_speed.show();
+		}
+		
+		_auto_camera_leftright.captionLabel().set((state.auto_camera_direction.get_value() > 0) ? "left":"right");
 	}
 
 	private void select_image_source()

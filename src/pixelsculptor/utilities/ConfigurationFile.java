@@ -267,6 +267,17 @@ public class ConfigurationFile implements IPixelSculptorConfiguration {
 		return _map.get("INIT.IMAGESOURCE.ONEFILE");
 	}
 
+	public char get_keymap_do_toggle_interactive()
+	{
+
+		return get_char(_map.get("KEYMAP.DO.TOGGLEINTERACTIVE"));
+	}
+
+	public int get_init_camera()
+	{
+		return Integer.parseInt(_map.get("INIT.IMAGESOURCE.CAMERA"));
+	}
+
 	
 
 	

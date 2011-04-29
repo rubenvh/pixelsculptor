@@ -122,4 +122,9 @@ public class KeyMap {
 	public char get_lightning_incheight() {
 		return _config.get_keymap_lightning_incheight();
 	}
+
+	public char get_do_toggle_interactive()
+	{
+		return _config.get_keymap_do_toggle_interactive();
+	}
 }

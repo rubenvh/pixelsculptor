@@ -9,5 +9,6 @@ public interface ICamera {
 	void setPosition(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void reset();
+	void step();
 
 }

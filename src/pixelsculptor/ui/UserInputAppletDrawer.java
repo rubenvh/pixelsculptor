@@ -68,7 +68,10 @@ public class UserInputAppletDrawer extends BaseAppletDrawer {
 			_state.camera.moveDown(20);
 		} else if (_applet.key == _keyMap.get_do_toggle_autolights()) {
 			_state.auto_lights = !_state.auto_lights;
+		} else if (_applet.key == _keyMap.get_do_toggle_interactive()) {
+			_state.interactive_camera = !_state.interactive_camera;
 		}
+		
 	}
 
 	public void keyReleased() {

@@ -80,4 +80,8 @@ public interface IPixelSculptorConfiguration {
 
 	char get_keymap_do_activate_ui();
 
+	char get_keymap_do_toggle_interactive();
+
+	int get_init_camera();
+
 }

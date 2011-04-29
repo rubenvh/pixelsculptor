@@ -40,15 +40,10 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 
 		_config = new ConfigurationFile(this, "app.config");
 		_keyMap = new KeyMap(_config);
-
+		_state = create_state(_config, _keyMap);
+		
 		size(_config.get_screen_width(), _config.get_screen_height(), P3D);
-
-		_state = new PixelSculptorState();
-		_state.background.set_value(_config.get_init_background());
-		_state.lights_dir.set_value((float) _config.get_init_lightsdir());
-		_state.camera = new KaleidoscopeCamera(this, this, _keyMap);
-		_state.camera.reset();
-
+		
 		PFont font = createFont("Courier", 10, false);
 		textFont(font);
 		textMode(SCREEN);
@@ -72,6 +67,8 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		background(_state.background.get_value());
 
 		super.draw();
+		
+		_state.camera.step();
 	}
 
 	public void mouseReleased() {
@@ -176,5 +173,17 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		this.saveFrame();
 		PApplet.println("ok!");
 		
+	}
+	
+	private PixelSculptorState create_state(IPixelSculptorConfiguration config, KeyMap keyMap)
+	{
+		PixelSculptorState state = new PixelSculptorState();
+		state.background.set_value(config.get_init_background());
+		state.lights_dir.set_value((float) config.get_init_lightsdir());
+		state.camera = new KaleidoscopeCamera(this, this, keyMap, this);
+		state.camera.reset();
+		state.cameraNumber.set_value(config.get_init_camera());
+
+		return state;
 	}
 }
