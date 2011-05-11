@@ -14,6 +14,7 @@ public class ImageSourceFactory {
 	private IImageSource _oneImage;
 	private IImageSource _directory;
 	private IImageSource _camera;
+	private IImageSource _movie;
 	private BasePApplet _applet;
 	private IConfigurationRepository _configRepo;
 	private IPixelSculptorStateRepository _stateRepo;
@@ -41,7 +42,11 @@ public class ImageSourceFactory {
 			if (_camera == null) _camera = OpenCVVideoSource.Create(_applet, 1, 320, 200, _stateRepo.get_pixelsculptor_state().cameraNumber.get_value(), maxPixels, new CameraNumberLoadStrategy(_stateRepo));
 			_selected = _camera;
 			break;
+		case Movie:
+			if (_movie == null) _movie = OpenCVVideoSource.Create(_applet, 1, 320, 200, _configRepo.get_configuration().get_init_imagesource_movie(), maxPixels);
+			_selected = _movie;
 		}
+		
 		
 		return _selected;
 	}

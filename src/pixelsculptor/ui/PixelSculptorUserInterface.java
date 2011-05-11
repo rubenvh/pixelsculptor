@@ -40,13 +40,15 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 	private IPixelSculptorStateRepository _stateRepo;
 	private IImageSourceRepository _imageSourceRepo;
 	private IGridRepository _gridRepo;
-
+	private IGridListener _gridListener;
+	
 	public PixelSculptorUserInterface(BasePApplet a, ControlP5 controls,
 			IRenderSelector renderSelector,
 			IScreenMaterializer screenMaterializer,
 			ISourceSelector srcSelector,
 			IPixelSculptorStateRepository stateRep,
-			IImageSourceRepository imageSourceRepo, IGridRepository gridRepo)
+			IImageSourceRepository imageSourceRepo, IGridRepository gridRepo,
+			IGridListener gridListener)
 	{
 		_applet = a;
 		_controls = controls;
@@ -56,7 +58,7 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 		_stateRepo = stateRep;
 		_imageSourceRepo = imageSourceRepo;
 		_gridRepo = gridRepo;
-
+		_gridListener = gridListener;
 		create_dropdown_cuberenderer(10, 60, 150, 200);
 		_takeScreenshot_btn = _controls.addButton("take screenshot", 0, 170,
 				39, 80, 20);
@@ -191,8 +193,12 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 			}
 			else if (theEvent.controller().equals(_maxPixels_sld))
 			{
-				_stateRepo.get_pixelsculptor_state().maxPixels
-						.set_value(((int) _maxPixels_sld.value()));
+				if (_stateRepo.get_pixelsculptor_state().maxPixels.get_value() != (int) _maxPixels_sld.value())
+				{
+					_stateRepo.get_pixelsculptor_state().maxPixels
+							.set_value(((int) _maxPixels_sld.value()));
+					_gridListener.reload_grid();
+				}
 			}
 			else if (theEvent.controller().equals(_camera_sld))
 			{
@@ -302,8 +308,9 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 		case Camera:
 			_camera_sld.show();
 			break;
+		case Movie:
+			break;
 		}
-
 	}
 
 	private void create_dropdown_cuberenderer(int x, int y, int w, int h)
@@ -348,5 +355,11 @@ public class PixelSculptorUserInterface extends BaseAppletDrawer
 		}
 		_imageSourceSelection_ddl.setColorBackground(_applet.color(60));
 		_imageSourceSelection_ddl.setColorActive(_applet.color(255, 128));
+	}
+
+	public void cleanup()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }

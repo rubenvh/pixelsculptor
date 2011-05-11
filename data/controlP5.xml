@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<controlP5 colorLabel="ffffffff" colorValue="ffffffff" colorForeground="ff00698c" date="Sun Mar 13 11:29:43 CET 2011" colorBackground="ff003652" colorActive="ff08a2cf" lock="false" filepath="controlP5.xml" urlpath="">
-<window height="700" name="main" background="00000000" width="700" class="pixelsculptor.engine.PixelSculptor">
+<controlP5 colorLabel="ffffffff" colorValue="ffffffff" colorForeground="ff00698c" date="Wed May 11 21:59:19 CEST 2011" colorBackground="ff003652" colorActive="ff08a2cf" lock="false" filepath="controlP5.xml" urlpath="">
+<window height="576" name="main" background="00000000" width="720" class="pixelsculptor.engine.PixelSculptor">
 <tab name="global" width="40" id="-1" visible="1.0" open="1.0" label="global" moveable="0.0"/>
 <tab name="default" width="45" id="-1" visible="1.0" open="1.0" label="default" moveable="0.0">
-<controller colorLabel="ffffffff" colorValue="ffffffff" name="take screenshot" id="-1" width="50" colorForeground="ff00698c" visible="1.0" colorBackground="ff003652" type="button" y="40.0" label="take screenshot" x="170.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
-<controller colorLabel="ffffffff" colorValue="ffffffff" name="open" id="-1" width="50" colorForeground="ff00698c" visible="1.0" colorBackground="ff003652" type="button" y="9.0" label="open" x="170.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
+<controller colorLabel="ffffffff" colorValue="ffffffff" name="take screenshot" id="-1" width="80" colorForeground="ff00698c" visible="1.0" colorBackground="ff003652" type="button" y="39.0" label="take screenshot" x="170.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
+<controller colorLabel="ffffffff" colorValue="ffffffff" name="auto lights" id="-1" width="60" colorForeground="ff00698c" visible="1.0" colorBackground="ff3c3c3c" type="button" y="39.0" label="auto lights" x="260.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
+<controller colorLabel="ffffffff" colorValue="ffffffff" name="interactive mode" id="-1" width="80" colorForeground="ff00698c" visible="1.0" colorBackground="ff007d64" type="button" y="39.0" label="interactive mode" x="330.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
+<controller colorLabel="ffffffff" colorValue="ffffffff" name="open" id="-1" width="50" colorForeground="ff00698c" visible="0.0" colorBackground="ff003652" type="button" y="9.0" label="open" x="170.0" colorActive="ff08a2cf" value="0.0" height="20" moveable="1.0"/>
 <controller name="browse" id="-1" width="50" visible="0.0" type="button" y="9.0" label="browse" x="170.0" value="0.0" height="20" moveable="1.0"/>
-<controller name="" id="-1" width="50" visible="0.0" type="numberbox" y="9.0" label="" x="170.0" value="0.0" height="20" moveable="1.0"/>
-<controller name="maximum number of pixels" id="-1" width="200" visible="1.0" min="1.0" type="slider" max="50.0" y="540.0" label="maximum number of pixels" x="10.0" value="20.0" height="10" moveable="1.0"/>
-<controller name="rgb scaling" id="-1" width="200" visible="1.0" min="1.0" type="slider" max="20.0" y="560.0" label="rgb scaling" x="10.0" value="5.0" height="10" moveable="1.0"/>
-<controller name="line weight" id="-1" width="200" visible="1.0" min="1.0" type="slider" max="5.0" y="580.0" label="line weight" x="10.0" value="1.0" height="10" moveable="1.0"/>
-<controller name="background color" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="255.0" y="600.0" label="background color" x="10.0" value="100.3937" height="10" moveable="1.0"/>
-<controller name="lightsource distance" id="-1" width="200" visible="1.0" min="500.0" type="slider" max="1000.0" y="620.0" label="lightsource distance" x="10.0" value="500.0" height="10" moveable="1.0"/>
-<controller name="lightsource height" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="500.0" y="640.0" label="lightsource height" x="10.0" value="400.0" height="10" moveable="1.0"/>
-<controller name="lightsource rotation" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="620.0" y="660.0" label="lightsource rotation" x="10.0" value="0.0" height="10" moveable="1.0"/>
+<controller name="" id="-1" width="50" visible="0.0" min="0.0" type="slider" max="3.0" y="9.0" label="" x="170.0" value="0.0" height="20" moveable="1.0"/>
+<controller name="direction" id="-1" width="40" visible="0.0" type="button" y="39.0" label="left" x="420.0" value="0.0" height="20" moveable="1.0"/>
+<controller name="camera speed" id="-1" width="200" visible="0.0" min="0.0" type="slider" max="1000.0" y="416.0" label="camera speed" x="10.0" value="10.0" height="10" moveable="1.0"/>
+<controller name="maximum number of pixels" id="-1" width="200" visible="1.0" min="1.0" type="slider" max="50.0" y="436.0" label="maximum number of pixels" x="10.0" value="5.0" height="10" moveable="1.0"/>
+<controller name="rgb scaling" id="-1" width="200" visible="1.0" min="1.0" type="slider" max="20.0" y="456.0" label="rgb scaling" x="10.0" value="1.0" height="10" moveable="1.0"/>
+<controller name="line weight" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="5.0" y="476.0" label="line weight" x="10.0" value="1.0" height="10" moveable="1.0"/>
+<controller name="background color" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="255.0" y="496.0" label="background color" x="10.0" value="0.0" height="10" moveable="1.0"/>
+<controller name="lightsource distance" id="-1" width="200" visible="1.0" min="500.0" type="slider" max="1000.0" y="516.0" label="lightsource distance" x="10.0" value="700.0" height="10" moveable="1.0"/>
+<controller name="lightsource height" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="500.0" y="536.0" label="lightsource height" x="10.0" value="400.0" height="10" moveable="1.0"/>
+<controller name="lightsource rotation" id="-1" width="200" visible="1.0" min="0.0" type="slider" max="629.0" y="556.0" label="lightsource rotation" x="10.0" value="400.0" height="10" moveable="1.0"/>
 </tab>
 </window>
 </controlP5>

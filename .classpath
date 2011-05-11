@@ -16,5 +16,8 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/ruben/Programs/libraries/opencv/mylib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/ruben/Programs/libraries/gsvideo0.8/GSVideo/library/gstreamer-java.jar"/>
+	<classpathentry kind="lib" path="/home/ruben/Programs/libraries/gsvideo0.8/GSVideo/library/GSVideo.jar"/>
+	<classpathentry kind="lib" path="/home/ruben/Programs/libraries/gsvideo0.8/GSVideo/library/jna.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -49,7 +49,6 @@ public class ConfigurationFile implements IPixelSculptorConfiguration {
 	public int get_init_rotation_x() {
 		return Integer.parseInt(_map.get("INIT.CUBE.ROTATIONX"));
 	}
-
 	
 	public int get_init_rotation_z() {
 		return Integer.parseInt(_map.get("INIT.CUBE.ROTATIONZ"));
@@ -266,6 +265,12 @@ public class ConfigurationFile implements IPixelSculptorConfiguration {
 	{
 		return _map.get("INIT.IMAGESOURCE.ONEFILE");
 	}
+	
+	public String get_init_imagesource_movie()
+	{
+		return _map.get("INIT.IMAGESOURCE.MOVIE");
+	}
+
 
 	public char get_keymap_do_toggle_interactive()
 	{
@@ -277,6 +282,32 @@ public class ConfigurationFile implements IPixelSculptorConfiguration {
 	{
 		return Integer.parseInt(_map.get("INIT.IMAGESOURCE.CAMERA"));
 	}
+
+	public char get_keymap_do_record()
+	{
+		return get_char(_map.get("KEYMAP.DO.RECORD"));
+	}
+
+	public String get_target_movie()
+	{
+		return _map.get("TARGET.MOVIE");
+	}
+
+	public int get_framerate()
+	{
+		return  Integer.parseInt(_map.get("INIT.FRAMERATE"));
+	}
+
+	public Float get_init_lightning_distance()
+	{
+		return Float.valueOf(_map.get("INIT.LIGHTNING.DISTANCE"));
+	}
+
+	public Integer get_init_maxcubes()
+	{
+		return Integer.parseInt(_map.get("INIT.MAXCUBES"));
+	}
+
 
 	
 

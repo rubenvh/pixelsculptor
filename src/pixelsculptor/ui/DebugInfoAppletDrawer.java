@@ -71,4 +71,10 @@ public class DebugInfoAppletDrawer extends BaseAppletDrawer {
 		_applet.text(output, _applet.width-110, _applet.height-5);
 	}
 
+	public void cleanup()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

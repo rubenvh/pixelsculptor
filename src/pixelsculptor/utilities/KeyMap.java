@@ -127,4 +127,9 @@ public class KeyMap {
 	{
 		return _config.get_keymap_do_toggle_interactive();
 	}
+
+	public char get_do_record()
+	{
+		return _config.get_keymap_do_record();
+	}
 }

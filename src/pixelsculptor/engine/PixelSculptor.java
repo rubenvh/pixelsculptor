@@ -17,9 +17,12 @@ import ruben.common.processing.video.*;
 @SuppressWarnings("serial")
 public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		ISourceSelector, IConfigurationRepository, IScreenMaterializer,
-		IPixelSculptorStateRepository, IImageSourceRepository, IGridRepository {
+		IPixelSculptorStateRepository, IImageSourceRepository, IGridRepository,
+		IGridListener
+{
 
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 
 		PApplet.main(new String[] { "display=1", "--bgcolor=#000000",
 				"--present-stop-color=#000000", "--exclusive", "--present",
@@ -34,15 +37,17 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 	PixelSculptorState _state;
 	ImageSourceFactory _imageSourceFactory;
 
-	public void setup() {
+	public void setup()
+	{
 
 		super.setup();
 
 		_config = new ConfigurationFile(this, "app.config");
 		_keyMap = new KeyMap(_config);
-		_state = create_state(_config, _keyMap);
-		
+		_state = PixelSculptorState.create_state(this, _config, _keyMap);
+
 		size(_config.get_screen_width(), _config.get_screen_height(), P3D);
+		frameRate(_config.get_framerate());
 		
 		PFont font = createFont("Courier", 10, false);
 		textFont(font);
@@ -50,16 +55,21 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 
 		_imageSourceFactory = new ImageSourceFactory(this, this, this);
 		select_image_source(ImageSourceType.OneImage);
+		
+		_drawers.add(new VideoDrawer(this, this, this));
 	}
 
-	public void controlEvent(ControlEvent theEvent) {
+	public void controlEvent(ControlEvent theEvent)
+	{
 
 		_ui.controlEvent(theEvent);
 	}
 
-	public void draw() {
+	public void draw()
+	{
 
-		if (_imageSource.has_next()) {
+		if (_imageSource.has_next())
+		{
 			_imageSource.step();
 			resetGrid();
 		}
@@ -67,34 +77,45 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		background(_state.background.get_value());
 
 		super.draw();
-		
+
 		_state.camera.step();
 	}
 
-	public void mouseReleased() {
+	public void mouseReleased()
+	{
 
-		if (this.key != _keyMap.get_do_activate_ui()) {
+		if (this.key != _keyMap.get_do_activate_ui())
+		{
 			_state.camera.reset();
 		}
 
 		super.mouseReleased();
 	}
 
-	public void keyPressed() {
+	public void keyPressed()
+	{
 
 		super.keyPressed();
 	}
 
-	public void keyReleased() {
+	public void stop()
+	{
+		super.stop();
+	}
 
-		if (this.key == _keyMap.get_do_loadfile()) {
+	public void keyReleased()
+	{
+
+		if (this.key == _keyMap.get_do_loadfile())
+		{
 			_imageSource.step();
 			resetGrid();
 		}
 		super.keyReleased();
 	}
 
-	public void select_renderer(CubeRendererType type) {
+	public void select_renderer(CubeRendererType type)
+	{
 
 		_grid
 				.set_renderer(CubeRendererFactory.create_cube_renderer(type,
@@ -103,9 +124,11 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		_state.selectedRenderer = type;
 	}
 
-	protected void load_applet_drawers() {
+	protected void load_applet_drawers()
+	{
 		_drawers = new Vector<IAppletDrawer>(3);
-		_drawers.add(new UserInputAppletDrawer(this, this, this, this, _keyMap));
+		_drawers
+				.add(new UserInputAppletDrawer(this, this, this, this, _keyMap));
 		_drawers.add(new GridAppletDrawer(this, this, this, this));
 		_drawers.add(new DebugInfoAppletDrawer(this, this, this, this));
 
@@ -114,30 +137,37 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		controls.setAutoDraw(false);
 
 		_ui = new PixelSculptorUserInterface(this, controls, this, this, this,
-				this, this, this);
+				this, this, this, this);
 		_drawers.add(_ui);
+
+		
 
 	}
 
-	public IPixelSculptorConfiguration get_configuration() {
+	public IPixelSculptorConfiguration get_configuration()
+	{
 
 		return _config;
 	}
 
-	public PixelSculptorState get_pixelsculptor_state() {
+	public PixelSculptorState get_pixelsculptor_state()
+	{
 		return _state;
 	}
 
-	public IImageSource get_image_source() {
+	public IImageSource get_image_source()
+	{
 		return _imageSource;
 	}
 
-	public PixelGrid get_grid() {
+	public PixelGrid get_grid()
+	{
 
 		return _grid;
 	}
 
-	public void select_image_source(ImageSourceType type) {
+	public void select_image_source(ImageSourceType type)
+	{
 
 		println("IMAGESOURCE: '" + type.toString() + "' selected");
 
@@ -150,15 +180,18 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		resetGrid();
 	}
 
-	public void load_image() {
+	public void load_image()
+	{
 		_imageSource.load();
 		resetGrid();
 	}
 
-	private void resetGrid() {
+	private void resetGrid()
+	{
 
 		int scale = _config.get_rgb_scale_factor();
-		if (_grid != null) {
+		if (_grid != null)
+		{
 			scale = _grid.getScaleRGB();
 		}
 		_grid = new PixelGrid(this, _imageSource.get_current_small_image(),
@@ -172,18 +205,14 @@ public class PixelSculptor extends BasePApplet implements IRenderSelector,
 		PApplet.print("Taking a screenshot...");
 		this.saveFrame();
 		PApplet.println("ok!");
-		
-	}
-	
-	private PixelSculptorState create_state(IPixelSculptorConfiguration config, KeyMap keyMap)
-	{
-		PixelSculptorState state = new PixelSculptorState();
-		state.background.set_value(config.get_init_background());
-		state.lights_dir.set_value((float) config.get_init_lightsdir());
-		state.camera = new KaleidoscopeCamera(this, this, keyMap, this);
-		state.camera.reset();
-		state.cameraNumber.set_value(config.get_init_camera());
 
-		return state;
+	}
+
+	
+
+	public void reload_grid()
+	{
+		_imageSource.update();
+		resetGrid();
 	}
 }

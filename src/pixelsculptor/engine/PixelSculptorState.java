@@ -2,7 +2,10 @@ package pixelsculptor.engine;
 
 import pixelsculptor.domain.ICamera;
 import pixelsculptor.domain.ImageSourceType;
+import pixelsculptor.domain.KaleidoscopeCamera;
 import pixelsculptor.rendering.CubeRendererType;
+import pixelsculptor.utilities.IPixelSculptorConfiguration;
+import pixelsculptor.utilities.KeyMap;
 import ruben.common.state.IParameter;
 import ruben.common.state.Parameter;
 
@@ -25,6 +28,7 @@ public class PixelSculptorState {
 		selectedRenderer = CubeRendererType.Coloured;
 		maxPixels = new Parameter<Integer>(20);
 		cameraNumber = new Parameter<Integer>(0);
+		doRecord = false;
 	}
 	
 	public int foreground() {
@@ -45,4 +49,23 @@ public class PixelSculptorState {
 	public CubeRendererType 	selectedRenderer;
 	public IParameter<Integer> 	maxPixels;
 	public IParameter<Integer> 	cameraNumber;
+	public Boolean 				doRecord;
+	
+	
+	public static PixelSculptorState create_state(
+			PixelSculptor sculptor,
+			IPixelSculptorConfiguration config,
+			KeyMap keyMap)
+	{
+		PixelSculptorState state = new PixelSculptorState();
+		state.background.set_value(config.get_init_background());
+		state.lights_dir.set_value((float) config.get_init_lightsdir());
+		state.camera = new KaleidoscopeCamera(sculptor, sculptor, keyMap, sculptor);
+		state.camera.reset();
+		state.cameraNumber.set_value(config.get_init_camera());
+		state.maxPixels.set_value(config.get_init_maxcubes());
+		state.lightningDistance.set_value(config.get_init_lightning_distance());
+
+		return state;
+	}
 }

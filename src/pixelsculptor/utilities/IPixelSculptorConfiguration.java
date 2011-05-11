@@ -4,6 +4,8 @@ import processing.core.PVector;
 
 public interface IPixelSculptorConfiguration {
 
+	int get_framerate();
+	
 	int get_screen_width();
 
 	int get_screen_height();
@@ -31,6 +33,8 @@ public interface IPixelSculptorConfiguration {
 	String get_init_imagesource_onefile();
 	
 	String get_init_imagesource_directory();
+	
+	String get_target_movie();
 	
 	char get_keymap_camera_forward();
 
@@ -68,6 +72,8 @@ public interface IPixelSculptorConfiguration {
 
 	char get_keymap_do_loadfile();
 
+	char get_keymap_do_record();
+	
 	char get_keymap_background_up();
 
 	char get_keymap_background_down();
@@ -83,5 +89,11 @@ public interface IPixelSculptorConfiguration {
 	char get_keymap_do_toggle_interactive();
 
 	int get_init_camera();
+
+	String get_init_imagesource_movie();
+
+	Integer get_init_maxcubes();
+
+	Float get_init_lightning_distance();
 
 }

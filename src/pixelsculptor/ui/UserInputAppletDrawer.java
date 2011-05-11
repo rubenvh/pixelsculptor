@@ -70,7 +70,10 @@ public class UserInputAppletDrawer extends BaseAppletDrawer {
 			_state.auto_lights = !_state.auto_lights;
 		} else if (_applet.key == _keyMap.get_do_toggle_interactive()) {
 			_state.interactive_camera = !_state.interactive_camera;
+		} else if (_applet.key == _keyMap.get_do_record()) {
+			_state.doRecord = !_state.doRecord;
 		}
+		
 		
 	}
 
@@ -96,6 +99,12 @@ public class UserInputAppletDrawer extends BaseAppletDrawer {
 		PApplet.println("Adjusting SCALE RGB value:");
 		_gridRepo.get_grid().setScaleRGB(scale);
 		//_grid.print();
+	}
+
+	public void cleanup()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }
